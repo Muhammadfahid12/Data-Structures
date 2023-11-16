@@ -6,9 +6,11 @@ using namespace std;
 class Shop
 {
 
+
+
 };
 
 int main()
 {
-    
+
 }
