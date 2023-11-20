@@ -122,7 +122,6 @@ public:
     {
         Node *temp = head;
         Node *previousNode = head;
-        // Node *nextNode = head;
 
         for (int i = 0; i < index; i++) // this loop is to get at the desired index in which node is to remove
         {
@@ -133,13 +132,22 @@ public:
         {
             previousNode = previousNode->next;
         }
-        // making prevouis node next pointer to the index+1 element node so,we also need node which is at index+1;
-
         Node *nextNode = temp->next; // it is node next to the node at index where we need to remove
 
         previousNode->next = nextNode;
         temp->next = NULL;
         listSize -= 1;
+    }
+
+    // removal from begginning
+
+    void removeFirstNode()
+    {
+        Node *temp = head;
+        temp = temp->next;
+        head->next = NULL;
+        head = temp;
+        listSize--;
     }
 };
 
@@ -152,9 +160,10 @@ int main()
     lists.insert(12);
     lists.endInsert(77);
     lists.endInsert(79);
+    lists.removeFirstNode();
     // lists.customInsert(101, 1);
     // lists.customInsert(404, 3);
-    lists.customRemove(2);
+    // lists.customRemove(1);
 
     int x = lists.getSize();
     cout << "Size: " << x << endl;
