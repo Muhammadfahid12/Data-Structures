@@ -3,9 +3,11 @@ using namespace std;
 
 class singlyList
 {
+
 private:
     class Node
     {
+
     public:
         int data;
         Node *next;
@@ -73,9 +75,14 @@ public:
 
     void customInsert(int data, int index)
     {
+         if (index < 0 || index > listSize)
+        {
+            cout << "Invalid index " << endl;
+            return;
+        }
+        
         Node *temp = head;
         Node *previous = head;
-
         Node *newElement = new Node(data);
 
         for (int i = 0; i < index; i++)
@@ -95,6 +102,11 @@ public:
     // find element at specific index;
     int getElement(int index)
     {
+        if (index < 0 || index > listSize)
+        {
+            cout << "Invalid index " << endl;
+            return 1;
+        }
 
         Node *temp = head;
         for (int i = 0; i < index; i++)
@@ -126,7 +138,7 @@ int main()
     lists.insert(12);
     lists.endInsert(77);
     lists.endInsert(79);
-    lists.customInsert(101,1);
+    lists.customInsert(101, 1);
     lists.customInsert(404, 3);
 
     int x = lists.getSize();
