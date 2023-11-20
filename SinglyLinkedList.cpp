@@ -75,12 +75,12 @@ public:
 
     void customInsert(int data, int index)
     {
-         if (index < 0 || index > listSize)
+        if (index < 0 || index > listSize)
         {
             cout << "Invalid index " << endl;
             return;
         }
-        
+
         Node *temp = head;
         Node *previous = head;
         Node *newElement = new Node(data);
@@ -118,14 +118,28 @@ public:
 
     // remove element at the given index;
 
-    void remove(int index)
+    void customRemove(int index)
     {
         Node *temp = head;
-        for (int i = 0; i < index; i++)
+        Node *previousNode = head;
+        // Node *nextNode = head;
+
+        for (int i = 0; i < index; i++) // this loop is to get at the desired index in which node is to remove
         {
             temp = temp->next;
         }
+
+        for (int j = 0; j < index - 1; j++)
+        {
+            previousNode = previousNode->next;
+        }
+        // making prevouis node next pointer to the index+1 element node so,we also need node which is at index+1;
+
+        Node *nextNode = temp->next; // it is node next to the node at index where we need to remove
+
+        previousNode->next = nextNode;
         temp->next = NULL;
+        listSize -= 1;
     }
 };
 
@@ -138,8 +152,9 @@ int main()
     lists.insert(12);
     lists.endInsert(77);
     lists.endInsert(79);
-    lists.customInsert(101, 1);
-    lists.customInsert(404, 3);
+    // lists.customInsert(101, 1);
+    // lists.customInsert(404, 3);
+    lists.customRemove(2);
 
     int x = lists.getSize();
     cout << "Size: " << x << endl;
