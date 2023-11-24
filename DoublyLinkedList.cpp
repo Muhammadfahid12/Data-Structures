@@ -91,13 +91,12 @@ public:
             newNode = new Node(data);
             Node *slider = getNode(index);
 
-            // first step is to make newNode->next point to oldNode which is slider in our case
+          
+            //in line 96 and 99 ,newNode have made connection with other tow neighbours pointers
 
             newNode->next = slider;
-            // newNode previous should be equal to slider->previous
             newNode->prev = slider->prev;
 
-            //in line 96 and 99 ,newNode have made connection with other tow neighbours pointers
 
             //now we have to linked newNode to previous indexed node and next indexed node .
             newNode->next->prev = newNode;
