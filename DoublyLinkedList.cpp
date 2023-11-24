@@ -40,7 +40,6 @@ class DoublyList
             {
                 n = n->next;
             }
-            return n;
         }
         else
         {
@@ -50,6 +49,7 @@ class DoublyList
                 n = n->prev;
             }
         }
+        return n;
     }
 
 public:
@@ -71,14 +71,42 @@ public:
 
     void *read(int index = -1)
     {
-        if (index >= 0)
-        {
-            Node *n = this->head;
+        Node *Slider = getNode(index);
+        return Slider->data;
+    }
 
-            for (int i = 0; i < index; i++)
-            {
-                n = n->next;
-            }
+    int size()
+    {
+        return listSize;
+    }
+
+    // insertion
+    void insert(int index, void *data)
+    {
+        Node *newNode = NULL;
+        // if insert in between linked list
+
+        if (index > 0)
+        {
+            newNode = new Node(data);
+            Node *slider = getNode(index);
+
+            // first step is to make newNode->next point to oldNode which is slider in our case
+
+            newNode->next = slider;
+            // newNode previous should be equal to slider->previous
+            newNode->prev = slider->prev;
+
+            //in line 96 and 99 ,newNode have made connection with other tow neighbours pointers
+
+            //now we have to linked newNode to previous indexed node and next indexed node .
+            newNode->next->prev = newNode;
+            newNode->prev->next = newNode;
+
+            //till line 104,our newNode is connected
+
         }
+
+        
     }
 };
