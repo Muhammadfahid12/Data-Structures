@@ -91,21 +91,55 @@ public:
             newNode = new Node(data);
             Node *slider = getNode(index);
 
-          
-            //in line 96 and 99 ,newNode have made connection with other tow neighbours pointers
+            // in line 96 and 99 ,newNode have made connection with other tow neighbours pointers
 
             newNode->next = slider;
             newNode->prev = slider->prev;
 
-
-            //now we have to linked newNode to previous indexed node and next indexed node .
+            // now we have to linked newNode to previous indexed node and next indexed node .
             newNode->next->prev = newNode;
             newNode->prev->next = newNode;
 
-            //till line 104,our newNode is connected
-
+            // till line 104,our newNode is connected
         }
+        if (index == 0)
+        {
+            Node *slider = new Node(data);
+            Node *newHead = head;
 
-        
+            newHead = slider;
+            slider->next = head;
+            head->prev = slider;
+            head = newHead;
+        }
+        if (index == -1)
+        {
+            Node *slider = new Node(data);
+            slider->prev = tail;
+            tail->next = slider;
+            tail = slider;
+        }
     }
 };
+
+int main()
+{
+
+    int x[4] = {4, 5, 6, 7};
+
+    int y = 343;
+    DoublyList myList(&y);
+
+    // cout << endl << myList.size() << endl;
+
+    for (int i = 0; i < 4; i++)
+    {
+        myList.insert(-1, &x[i]);
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout << endl
+             << *((int *)myList.read(i)) << endl;
+    }
+}
